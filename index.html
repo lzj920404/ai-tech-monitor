@@ -85,7 +85,7 @@ table.tt td:first-child, table.tt th:first-child { text-align:left; }
   <span>数据截至 <b>2026-09-14</b></span>
   <span>数据源 <b>Nasdaq</b></span>
   <span>指数成分 <b>8/8</b>（等权，每日再平衡）</span>
-  <span>运行时间 <b>2026-09-15 11:47:43</b></span>
+  <span>运行时间 <b>2026-09-15 12:04:32</b></span>
   <span>交易日样本 <b>1200</b></span>
 </div>
 
@@ -325,9 +325,11 @@ function mainTip(p){
   return s+trade;
 }
 const GRIDS=[{top:26,height:'36%'},{top:'47%',height:'19%'},{top:'70%',height:'12%'},{top:'86%',height:'10%'}];
-const xz={type:'category',data:D.dates,axisLine:{lineStyle:{color:'#30363d'}}};
-const xhide=Object.assign({},xz,{axisLabel:{show:false},axisTick:{show:false}});
-const ybase={splitLine:{lineStyle:{color:'#21262d'}},axisLabel:{color:'#8a93a6'},scale:true};
+const xz={type:'category',data:D.dates,axisLine:{lineStyle:{color:'#30363d'}},gridIndex:3};
+const xhide=Object.assign({},xz,{axisLabel:{show:false},axisTick:{show:false},gridIndex:0});
+const xhide1=Object.assign({},xz,{axisLabel:{show:false},axisTick:{show:false},gridIndex:1});
+const xhide2=Object.assign({},xz,{axisLabel:{show:false},axisTick:{show:false},gridIndex:2});
+const ybase={splitLine:{lineStyle:{color:'#21262d'}},axisLabel:{color:'#8a93a6'},scale:true,type:'value'};
 const priceSeries={ type:'line', name:'收盘价', data:D.close.map((v,i)=>[D.dates[i],v]), showSymbol:false,
   lineStyle:{width:1.6,color:'#4da3ff'}, xAxisIndex:0, yAxisIndex:0,
   markArea:{ silent:true, itemStyle:{color:'rgba(77,163,255,0.07)'},
@@ -354,7 +356,7 @@ const mainChart = mk('c_main', {
    borderColor:'#30363d', backgroundColor:'#10151d', fillerColor:'rgba(77,163,255,0.15)',
    handleStyle:{color:'#4da3ff'}, textStyle:{color:'#8a93a6'}}],
  grid:GRIDS,
- xAxis:[xhide,xhide,xhide,xz],
+ xAxis:[xhide,xhide1,xhide2,xz],
  yAxis:[
   Object.assign({},ybase,{gridIndex:0, scale:true}),
   Object.assign({},ybase,{gridIndex:1,min:0,max:100}),
